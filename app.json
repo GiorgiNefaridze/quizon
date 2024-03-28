@@ -4,10 +4,10 @@
     "slug": "quizon",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/quizon-icon.png",
+    "icon": "./src/assets/quizon-icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,12 +17,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/quizon-icon.png",
+        "foregroundImage": "./src/assets/quizon-icon.png",
         "backgroundColor": "#ffffff"
       }
     },
     "web": {
-      "favicon": "./assets/quizon-icon.png"
+      "favicon": "./src/assets/quizon-icon.png"
     }
   }
 }

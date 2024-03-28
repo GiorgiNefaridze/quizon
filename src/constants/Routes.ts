@@ -3,9 +3,11 @@ import { type ReactNode } from "react";
 import Home from "../screens/Home";
 import Quiz from "../screens/Quiz";
 
+import { type ScreenType } from "../types/GlobalScreenTypes";
+
 type RouteType = {
-  path: string;
-  compoennt: () => ReactNode;
+  path: "Home" | "Quiz";
+  component: ({}: ScreenType & unknown) => ReactNode;
 };
 
 type RoutesType = RouteType[];
@@ -13,11 +15,11 @@ type RoutesType = RouteType[];
 const Routes: RoutesType = [
   {
     path: "Home",
-    compoennt: Home,
+    component: Home,
   },
   {
     path: "Quiz",
-    compoennt: Quiz,
+    component: Quiz,
   },
 ] as const;
 

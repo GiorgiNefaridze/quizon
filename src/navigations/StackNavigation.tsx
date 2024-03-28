@@ -12,8 +12,8 @@ const StackNavigation = () => {
       initialRouteName={initialRouteName}
       screenOptions={{ header: () => null }}
     >
-      {Routes.map(({ path, compoennt }) => {
-        return <Stack.Screen name={path} component={compoennt} />;
+      {Routes.map(({ path, component }) => {
+        return <Stack.Screen name={path} component={component} key={path} />;
       })}
     </Stack.Navigator>
   );
