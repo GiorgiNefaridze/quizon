@@ -4,4 +4,4 @@ type ScreenType = {
   navigation: NavigationProp<{}>;
 };
 
-export { ScreenType };
+export { type ScreenType };

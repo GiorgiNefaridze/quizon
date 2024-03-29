@@ -1,13 +1,15 @@
-import "react-native-gesture-handler";
 import { NavigationContainer } from "@react-navigation/native";
 
+import QueryClientWrapper from "./QueryClientWrapper";
 import StackNavigation from "./src/navigations/StackNavigation";
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <StackNavigation />
-    </NavigationContainer>
+    <QueryClientWrapper>
+      <NavigationContainer>
+        <StackNavigation />
+      </NavigationContainer>
+    </QueryClientWrapper>
   );
 };
 

@@ -1,4 +1,5 @@
 import { View, Text, Image, Button, TouchableOpacity } from "react-native";
+import SelectDropdown from "react-native-select-dropdown";
 
 import { ScreenType } from "../types/GlobalScreenTypes";
 
