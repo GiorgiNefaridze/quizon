@@ -1,16 +1,16 @@
-import { useState } from "react";
 import { View, Text, Image, Button, TouchableOpacity } from "react-native";
 
 import { useGetCategories } from "../hooks/categories/useGetCategories";
 import { useGetDfficulties } from "../hooks/difficulties/useGetDfficulties";
+
 import { ScreenType } from "../types/GlobalScreenTypes";
+import { QuizOptionsContext } from "../contexts/QuizOptionsContext";
 import Dropdown from "../components/SelectDropdown";
 
 import Layer from "../assets/layers.png";
 
 const Home = ({ navigation }: ScreenType) => {
-  const [category, setCategory] = useState("");
-  const [difficulty, setDifficulty] = useState("");
+  const { setCategory, setDifficulty } = QuizOptionsContext();
 
   const { data: categories, isLoading } = useGetCategories();
   const difficulties = useGetDfficulties();

@@ -11,10 +11,13 @@ const difficulties = [
     id: 3,
     name: "hard",
   },
-];
+] as const;
+
+const difficultiesNames = difficulties.map((dif) => dif?.name);
+type DifficultiesNames = (typeof difficultiesNames)[number];
 
 const useGetDfficulties = () => {
   return difficulties;
 };
 
-export { useGetDfficulties };
+export { useGetDfficulties, type DifficultiesNames };
