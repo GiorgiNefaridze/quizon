@@ -35,17 +35,17 @@ const Btn = ({
   return (
     <TouchableOpacity
       onPress={handleSelect}
-      className="m-1 w-[70%] p-3 rounded-lg flex-row items-center gap-x-2"
+      className="m-[1.5%] w-[80%] p-3 rounded-lg flex-row items-center gap-x-2"
       style={{
         backgroundColor: pressed
           ? isCorrectAnswer
-            ? "green"
-            : "#c7c7c7"
+            ? "#0dff0d"
+            : "#f8c367"
           : "white",
       }}
     >
       <MaterialIcons name="radio-button-unchecked" size={20} />
-      <Text>{answer}</Text>
+      <Text className="text-lg">{answer}</Text>
     </TouchableOpacity>
   );
 };

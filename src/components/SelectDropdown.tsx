@@ -39,6 +39,7 @@ const Dropdown = ({ data, label, handleChange }: DropdownType) => {
         </View>
       )}
       showsVerticalScrollIndicator={false}
+      dropdownStyle={{ borderRadius: 8 }}
     />
   );
 };

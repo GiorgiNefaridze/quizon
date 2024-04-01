@@ -1,6 +1,12 @@
 import { useEffect, useMemo, useState } from "react";
-import { View, Text, Button, TouchableOpacity } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import {
+  View,
+  Text,
+  Button,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { useIsFocused } from "@react-navigation/native";
 
 import Btn from "../components/Button";
@@ -24,7 +30,11 @@ const Quiz = ({ navigation }: ScreenType) => {
   }, [isFocused]);
 
   const { category, difficulty } = QuizOptionsContext();
-  const { data: quiz, refetch } = useGetQuizzes({
+  const {
+    data: quiz,
+    refetch,
+    isFetching,
+  } = useGetQuizzes({
     categoryId: category?.id,
     difficulty: difficulty?.name,
   });
@@ -49,37 +59,52 @@ const Quiz = ({ navigation }: ScreenType) => {
   };
 
   return (
-    <View className="flex-1 bg-[#E5C287] justify-evenly items-center relative">
-      <View className="w-full absolute top-20 pr-5 pl-5 flex items-center flex-row justify-between">
-        <TouchableOpacity onPress={() => navigation.goBack()}>
-          <AntDesign name="leftcircle" size={24} color="black" />
+    <View className="flex-1 bg-[#d979f6] pt-20 justify-evenly items-center relative px-5">
+      <View className="w-full absolute top-20 flex items-center flex-row justify-between">
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          className="border p-1 rounded-2xl border-white"
+        >
+          <Ionicons name="arrow-back-sharp" size={24} color="white" />
         </TouchableOpacity>
-        <Text>Score: {score}</Text>
+        <Text className="font-bold text-lg text-white">
+          Score: {isFetching ? ".." : score}
+        </Text>
       </View>
-      <Text className="font-bold text-lg text-center">{quiz?.question}</Text>
-      <View className="w-full items-center justify-center">
-        {ShuffledArray?.map((answer, idx) => (
-          <Btn
-            answer={answer}
-            setSelected={setSelected}
-            selected={selected}
-            checkAnswer={checkAnswer}
-            correctAnswer={quiz?.correct_answer}
-            key={idx}
-          />
-        ))}
-      </View>
-      <View className="w-full flex-row items-center justify-center gap-x-5">
-        <View className="w-1/2 bg-white p-2 rounded-lg">
+
+      {isFetching ? (
+        <ActivityIndicator color={"white"} size={"large"} />
+      ) : (
+        <>
+          <Text className="font-bold text-xl text-center text-white">
+            {quiz?.question}
+          </Text>
+          <View className="w-full items-center justify-center">
+            {ShuffledArray?.map((answer, idx) => (
+              <Btn
+                answer={answer}
+                setSelected={setSelected}
+                selected={selected}
+                checkAnswer={checkAnswer}
+                correctAnswer={quiz?.correct_answer}
+                key={idx}
+              />
+            ))}
+          </View>
+        </>
+      )}
+      <View className="w-full flex-row items-center justify-center  mx-auto">
+        <View className="w-[55%] bg-white p-2 rounded-lg">
           <Button
             title="Submit answer"
             onPress={handleSubmit}
             disabled={Boolean(!selected || checkAnswer)}
+            color={"black"}
           />
         </View>
         {checkAnswer && isCorrectAnswer && (
-          <View className="w-1/5 bg-white p-2 rounded-lg">
-            <Button title="Next" onPress={reset} />
+          <View className="w-1/5 bg-white p-2 ml-[5%] rounded-lg">
+            <Button title="Next" onPress={reset} color={"black"} />
           </View>
         )}
         {checkAnswer && !isCorrectAnswer && (

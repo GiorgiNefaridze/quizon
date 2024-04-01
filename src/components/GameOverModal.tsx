@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, Pressable } from "react-native";
 import Modal from "react-native-modal";
 
 import { ScreenType } from "../types/GlobalScreenTypes";
@@ -14,16 +14,17 @@ const GameOverModal = ({ navigation, score }: GameOverModalType) => {
   return (
     <View>
       <Modal isVisible={isVisible}>
-        <View className="p-10 w-[70%] flex-row gap-x-5 mx-auto items-center justify-center bg-white">
-          <Text>Score: {score}</Text>
-          <Text
+        <View className="p-10 pb-5 w-[70%] rounded-lg mx-auto bg-white gap-y-5">
+          <Text className="text-center text-xl">Score: {score} 🥂</Text>
+          <Pressable
+            className="p-3 w-full bg-[#f8c367] flex-row items-center justify-around rounded-xl"
             onPress={() => {
               navigation.navigate("Home");
               setIsVisible(false);
             }}
           >
-            Restart game
-          </Text>
+            <Text className="text-white text-xl font-bold">Close</Text>
+          </Pressable>
         </View>
       </Modal>
     </View>

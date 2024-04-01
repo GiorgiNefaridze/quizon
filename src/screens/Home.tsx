@@ -20,7 +20,7 @@ const Home = ({ navigation }: ScreenType) => {
       <Image source={Layer} />
       <Text className="text-[40px] font-bold text-white mb-10">QUIZON</Text>
 
-      <View className="w-full flex-col items-center gap-y-2">
+      <View className="w-full flex-col items-center gap-y-4">
         <Pressable
           className="p-4 px-6 w-1/2 flex-row items-center justify-between bg-white rounded-xl"
           onPress={handleNavigation}
