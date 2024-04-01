@@ -26,12 +26,16 @@ const Dropdown = ({ data, label, handleChange }: DropdownType) => {
       }}
       renderButton={(selectedItem, isOpened) => (
         <View>
-          <Text>{label + ": " + value?.name || ""}</Text>
+          <Text className="text-[#f8c367] text-lg font-bold mb-4">
+            {label + ": " + value?.name}
+          </Text>
         </View>
       )}
       renderItem={(item, index) => (
         <View>
-          <Text>{item?.name}</Text>
+          <Text className="text-white text-lg font-bold p-2 bg-[#f8c367] m-3">
+            {item?.name}
+          </Text>
         </View>
       )}
       showsVerticalScrollIndicator={false}

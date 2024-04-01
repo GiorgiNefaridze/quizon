@@ -1,49 +1,48 @@
-import { View, Text, Image, Button, TouchableOpacity } from "react-native";
+import { useState } from "react";
+import { View, Text, Image, Pressable } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 
-import { useGetCategories } from "../hooks/categories/useGetCategories";
-import { useGetDfficulties } from "../hooks/difficulties/useGetDfficulties";
-
+import OptionsModal from "../components/OptionsModal";
 import { ScreenType } from "../types/GlobalScreenTypes";
-import { QuizOptionsContext } from "../contexts/QuizOptionsContext";
-import Dropdown from "../components/SelectDropdown";
 
 import Layer from "../assets/layers.png";
 
 const Home = ({ navigation }: ScreenType) => {
-  const { setCategory, setDifficulty } = QuizOptionsContext();
-
-  const { data: categories, isLoading } = useGetCategories();
-  const difficulties = useGetDfficulties();
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleNavigation = () => {
     navigation?.navigate("Quiz");
   };
 
   return (
-    <View className="flex-1 bg-[#E5C287] items-center justify-center">
+    <View className="flex-1 bg-[#d979f6] items-center justify-center gap-y-10">
+      <Image source={Layer} />
       <Text className="text-[40px] font-bold text-white mb-10">QUIZON</Text>
-      <TouchableOpacity className="bg-white p-2 rounded-xl w-1/2">
-        <Button title="Start" onPress={handleNavigation} />
-      </TouchableOpacity>
 
-      {!isLoading ? (
-        <View className="w-60 h-20 justify-between p-2 items-center flex-col">
-          <Dropdown
-            data={categories ?? []}
-            label="Select categories"
-            handleChange={setCategory}
-          />
-          <Dropdown
-            data={difficulties}
-            label="Select difficulties"
-            handleChange={setDifficulty}
-          />
-        </View>
-      ) : (
-        <Text>Loading...</Text>
+      <View className="w-full flex-col items-center gap-y-2">
+        <Pressable
+          className="p-4 px-6 w-1/2 flex-row items-center justify-between bg-white rounded-xl"
+          onPress={handleNavigation}
+        >
+          <Text className="text-[#f8c367] text-xl font-bold">Start</Text>
+          <MaterialCommunityIcons name="run" size={24} color="#f8c367" />
+        </Pressable>
+        <Pressable
+          onPress={() => setIsModalOpen(true)}
+          className="p-4 px-6 w-1/2 flex-row items-center justify-between bg-white rounded-xl"
+        >
+          <Text className="text-[#f8c367] text-xl font-bold">Options</Text>
+          <Ionicons name="settings" size={24} color="#f8c367" />
+        </Pressable>
+      </View>
+
+      {isModalOpen && (
+        <OptionsModal
+          isModalOpen={isModalOpen}
+          setIsModalOpen={setIsModalOpen}
+        />
       )}
-
-      <Image source={Layer} className="absolute opacity-20 z-[-1]" />
     </View>
   );
 };
